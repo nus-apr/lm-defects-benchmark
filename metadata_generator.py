@@ -9,8 +9,8 @@ src_dirs_list = ["easy", "medium", "plausible"]
 test_file_name = "PublicSolutionTest.java"
 main_file_package_path = "com.codex.Solution"
 test_file_package_path = "com.codex.PublicSolutionTest"
-src_main_dir = os.path.join("src", "main", "java", "com", "codex")
-src_test_dir = os.path.join("src", "test", "java", "com", "codex")
+package_path = os.path.join("com", "codex")
+src_test_dir = os.path.join("src", "test", "java")
 
 for subject in src_dirs_list:
     # subject = plausible, easy...
@@ -23,7 +23,7 @@ for subject in src_dirs_list:
         # src/test/java/com/codex/PrivateSolutionTest.java
         # src/test/java/com/codex/PublicSolutionTest.java
 
-        f = open(os.path.join(subject, bug_id, src_test_dir, test_file_name), "r")
+        f = open(os.path.join(subject, bug_id, src_test_dir, package_path, test_file_name), "r")
         neg_tests = f.read().count("@Test")
 
         id += 1
@@ -33,13 +33,14 @@ for subject in src_dirs_list:
                 "subject": subject,
                 "bug_id": bug_id,
                 "source_file": main_file_package_path,
-                "source_directory": src_main_dir,
-                "class_directory": "target/classes/com/codex",
+                "source_directory": "src/main/java/",
+                "class_directory": "target/classes/",
                 "test_directory": src_test_dir,
-                "test_class_directory": "target/test-classes/com/codex",
+                "test_class_directory": "target/test-classes/",
                 "line_numbers": [],
                 "failing_test": [test_file_package_path],
                 "passing_test": [],
+                "dependencies": [],
                 "count_neg": neg_tests,
                 "count_pos": 0,
                 "test_file": test_file_name,
