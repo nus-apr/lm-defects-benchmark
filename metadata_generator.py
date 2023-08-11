@@ -41,6 +41,7 @@ for subject in src_dirs_list:
                 "failing_test": [test_file_package_path],
                 "passing_test": [],
                 "dependencies": [],
+                "language": "java",
                 "count_neg": neg_tests,
                 "count_pos": 0,
                 "test_file": test_file_name,
